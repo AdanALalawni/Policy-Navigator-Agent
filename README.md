@@ -45,9 +45,23 @@ To create the agent and deploy it using a Flask server to type a question in the
   * To run the Flask server, run this command:
      ``` python app.py```
     Then open `index.html`.This page will appear:
-    ![Web page]([https://github.com/AdanALalawni/NewsRankingSystem-/blob/main/assets/Project_Outlines.png](https://github.com/AdanALalawni/Policy-Navigator-Agent/blob/main/assert/Screenshot%202025-07-28%20211843.png))
+    
+    ![Web page](https://github.com/AdanALalawni/Policy-Navigator-Agent/blob/main/assert/Screenshot%202025-07-28%20211843.png)
     
 # Examples:
+* * **The quary** : " What does Sec. 103 say about data minimization?"
+  * **The response** :  "I found in Internal Policy Index – Sec. 103: Companies would only be allowed to collect/make use of user data in a way that minimizes the amount of data collected and used."
+ 
+* * **The quary** : " What was the ruling in the case of Dobbs v. Jackson Women's Health Organization?"
+  * **The response** :  "I checked the CourtListener API: The ruling in the case of Dobbs v. Jackson Women's Health Organization was a significant decision by the U.S. Supreme Court that overturned Roe v. Wade, effectively ending the constitutional right to abortion. The Court held that the Constitution does not confer a right to abortion, and that states have the authority to regulate or prohibit abortion as they see fit."
+
+* * **The quary** : " Is Executive Order 14067 still in effect?"
+  * **The response** :  "checked the Federal Register API: yes it executive."
+# 	Future Improvements:
+* Add speech to text tool to recive the quraies as a voice.
+* Add a tool to read multiple quaries from text file.
+* Add multilingual support, fine‑tuned summarizers, or explainability tools.
+
 
  
 
