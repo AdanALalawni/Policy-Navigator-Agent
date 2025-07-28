@@ -1,0 +1,14 @@
+flask
+flask-cors
+python-dotenv
+pandas
+chromadb
+PyPDF2
+aixplain
+requests
+black
+isort
+pylint
+pytest
+pytest-cov
+slcak_sdk

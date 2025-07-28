@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aixplain Agent Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #ffffff0f;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+            backdrop-filter: blur(12px);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #00d4ff;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            resize: none;
+            outline: none;
+            background: #fff;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #00d4ff;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        
+        button:hover {
+            background: #00aacc;
+            transform: scale(1.02);
+        }
+        
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffffff15;
+            border-left: 4px solid #00d4ff;
+            border-radius: 10px;
+            min-height: 60px;
+            font-size: 15px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 24px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Ask the Aixplain Agent</h2>
+        <textarea id="query" placeholder="Type your question here..."></textarea>
+        <button onclick="submitQuery()">Submit</button>
+        <div id="response">Your response will appear here...</div>
+    </div>
+
+    <script>
+        function submitQuery() {
+            const query = document.getElementById("query").value;
+            const responseDiv = document.getElementById("response");
+
+            if (!query.trim()) {
+                responseDiv.innerText = "Please enter a question.";
+                return;
+            }
+
+            responseDiv.innerText = "⏳ Waiting for response...";
+
+            fetch("http://127.0.0.1:5000/ask", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        query: query
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.result) {
+                        responseDiv.innerText = data.result;
+                    } else {
+                        responseDiv.innerText = "❌ Error: " + JSON.stringify(data);
+                    }
+                })
+                .catch(err => {
+                    responseDiv.innerText = "⚠️ Request failed: " + err;
+                });
+        }
+    </script>
+</body>
+
+</html>
